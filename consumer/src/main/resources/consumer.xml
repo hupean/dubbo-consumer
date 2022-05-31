@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- 用于配置当前应用信息，不管该应用是提供者还是消费者 -->
+    <dubbo:application name="consumer"/>
+    <!-- 用于配置连接注册中心相关信息,本例采用zookeeper作为注册中心 -->
+    <dubbo:registry protocol="zookeeper" address="zookeeper://127.0.0.1:2181"/>
+    <!-- 服务消费者引用服务配置。id:服务引用Bean Id 即为注入名  interface: 接口（类）名 -->
+    <dubbo:reference interface="com.hupean.service.UserService" id="userService" check="false"/>
+
+    <!--
+        dubbo官网：https://dubbo.apache.org/zh/
+        dubbo.xml配置可参考：https://blog.csdn.net/niugang0920/article/details/81975421
+    -->
+</beans>
